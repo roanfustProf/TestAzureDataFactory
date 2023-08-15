@@ -5,7 +5,14 @@
 			{
 				"name": "Import Sales Data",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -21,6 +28,13 @@
 							{
 								"name": "SourceFileName",
 								"value": "$$FILEPATH"
+							},
+							{
+								"name": "RunSeqNo",
+								"value": {
+									"value": "@activity('Lookup1').output.firstRow.RunSeqNo",
+									"type": "Expression"
+								}
 							}
 						],
 						"storeSettings": {
@@ -122,7 +136,7 @@
 						},
 						"RunSeqNo": {
 							"value": {
-								"value": "@int('1')",
+								"value": "@activity('Lookup1').output.firstRow.RunSeqNo",
 								"type": "Expression"
 							},
 							"type": "Int32"
@@ -139,6 +153,55 @@
 				"linkedServiceName": {
 					"referenceName": "asqldb_abc_retailsales",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[LogPipelineStart]",
+						"storedProcedureParameters": {
+							"Comments": {
+								"type": "String",
+								"value": null
+							},
+							"PipelineRunId": {
+								"type": "Guid",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							"RunStartDateTime": {
+								"type": "DateTime",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "asqlt_abs_retailsales",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema_name": "-1",
+							"table_name": "-1"
+						}
+					}
 				}
 			}
 		],
