@@ -122,7 +122,7 @@
 						},
 						"RunSeqNo": {
 							"value": {
-								"value": "\"1\"",
+								"value": "@int('1')",
 								"type": "Expression"
 							},
 							"type": "Int32"
