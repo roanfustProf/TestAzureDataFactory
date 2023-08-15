@@ -48,7 +48,7 @@
 						"parameters": {
 							"container": "sampledata",
 							"directory": "azure-data-factory-by-example-main/SampleData/SweetTreats/Apr-20",
-							"file_name": "Sales.csv"
+							"file_name": "*.csv"
 						}
 					}
 				],
