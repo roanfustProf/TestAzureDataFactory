@@ -21,9 +21,6 @@
 							{
 								"name": "SourceFileName",
 								"value": "$$FILEPATH"
-							},
-							{
-								"value": "$$FILEPATH"
 							}
 						],
 						"storeSettings": {
