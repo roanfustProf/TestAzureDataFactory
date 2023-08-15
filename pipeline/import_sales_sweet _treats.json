@@ -26,15 +26,36 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "csv_sales_data",
 						"type": "DatasetReference",
 						"parameters": {
-							"directory": "-1"
+							"container": "sampledata",
+							"directory": "azure-data-factory-by-example-main/SampleData/SweetTreats ",
+							"file_name": "*.csv"
 						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "asqlt_abs_retailsales",
+						"type": "DatasetReference"
 					}
 				]
 			}

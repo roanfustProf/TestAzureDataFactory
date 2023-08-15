@@ -1,0 +1,32 @@
+{
+	"name": "asqlt_abs_retailsales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "asqldb_abc_retailsales",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"schema_name": {
+				"type": "string",
+				"defaultValue": "-1"
+			},
+			"table_name": {
+				"type": "string",
+				"defaultValue": "-1"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().schema_name",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
+		}
+	}
+}
