@@ -1,0 +1,47 @@
+{
+	"name": "import_sales_sweet _treats",
+	"properties": {
+		"activities": [
+			{
+				"name": "Import Sales Data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "csv_sales_data",
+						"type": "DatasetReference",
+						"parameters": {
+							"directory": "-1"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Ejemplo01"
+		},
+		"annotations": []
+	}
+}
