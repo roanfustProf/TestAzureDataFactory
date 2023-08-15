@@ -124,7 +124,10 @@
 							"type": "DateTime"
 						},
 						"RunSeqNo": {
-							"value": "1",
+							"value": {
+								"value": "\"1\"",
+								"type": "Expression"
+							},
 							"type": "Int32"
 						},
 						"RunStatus": {
