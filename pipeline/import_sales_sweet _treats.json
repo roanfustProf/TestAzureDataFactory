@@ -55,7 +55,11 @@
 				"outputs": [
 					{
 						"referenceName": "asqlt_abs_retailsales",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"schema_name": "dbo",
+							"table_name": "Sales_LOAD"
+						}
 					}
 				]
 			}
