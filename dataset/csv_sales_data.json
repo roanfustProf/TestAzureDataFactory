@@ -16,7 +16,7 @@
 			},
 			"file_name": {
 				"type": "string",
-				"defaultValue": "-1"
+				"defaultValue": "*.csv"
 			}
 		},
 		"annotations": [],
